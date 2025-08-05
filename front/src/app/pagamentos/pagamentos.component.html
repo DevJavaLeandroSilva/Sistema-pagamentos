@@ -1,0 +1,49 @@
+<div class="container">
+  <h1 class="title">Sistema de Pagamentos</h1>
+
+  <form class="filtro-form" (ngSubmit)="filtrar()">
+    <input type="text"
+      placeholder="CPF ou CNPJ"
+      [(ngModel)]="cpfCnpj"
+      name="cpfCnpj"
+      class="input"
+    />
+    <label for="status" class="visually-hidden">Status</label>
+    <select id="status" [(ngModel)]="status" name="status" class="select" (change)="filtrar()">
+      <option value="">Todos os Status</option>
+      <option value="PENDENTE_PROCESSAMENTO">Pendente</option>
+      <option value="PROCESSADO_SUCESSO">Processado com sucesso</option>
+      <option value="PROCESSADO_FALHA">Falha no processamento</option>
+    </select>
+    <button type="submit" class="button">Filtrar</button>
+  </form>
+
+  <table class="tabela">
+    <thead>
+      <tr>
+        <th>ID Pagamento</th>
+        <th>CPF/CNPJ</th>
+        <th>Método</th>
+        <th>Valor (R$)</th>
+        <th>Status</th>
+        <th>Ativo</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of pagamentos">
+        <td>{{ p.idPagamento }}</td>
+        <td>{{ p.cpfCnpj }}</td>
+        <td>{{ p.metodoPagamento }}</td>
+        <td>{{ p.valor | currency:'BRL' }}</td>
+        <td>{{ p.status | status }}</td>
+        <td>{{ p.ativo ? 'Sim' : 'Não' }}</td>
+        <td>
+          <button (click)="excluir(p.idPagamento)" class="button danger">
+            Excluir
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
