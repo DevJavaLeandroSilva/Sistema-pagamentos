@@ -14,11 +14,6 @@ Aplicação front-end desenvolvida em Angular, servida via Docker com Nginx, que
 
 ## Como executar localmente
 - Clonar o repositório
-- cd front
- 
----
-
-## Instalar dependências e construir o projeto
 - npm install
 - ng build --configuration production
 
